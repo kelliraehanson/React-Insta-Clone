@@ -1,15 +1,62 @@
 .SearchBar {
     display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
+.logoImage {
+    color: black;
+    font-size: 35px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    
+}
 
+.line {
+    color: black;
+    font-size: 34px;
+    display: flex;
+    align-items: center;
+    margin-left: -380px;
 
-
+}
 
 .instaSearchbar {
     color: black;
-    font-size: 24px;
+    font-size: 34px;
     font-family: cursive;
     font-weight: bolder;
+    cursor: pointer;
+    margin-left: -380px;
+
     /* font-family: 'billabong';  */
+}
+
+i {
+    width: 55px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.icons {
+    font-size: 25px;
+    color: grey;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+input {
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 200px;
+    height: 35px;
+    cursor: pointer;
+    background-color: lightgrey;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
 }
