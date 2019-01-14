@@ -9,7 +9,8 @@ class SearchBar extends Component {
       return (
 
         <div className="SearchBar">
-        <h1>hi</h1>
+
+        <div className="instaSearchbar">Instagram</div>
          
         </div>
 

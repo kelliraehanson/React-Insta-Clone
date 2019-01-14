@@ -1,0 +1,15 @@
+.SearchBar {
+    display: flex;
+}
+
+
+
+
+
+.instaSearchbar {
+    color: black;
+    font-size: 24px;
+    font-family: cursive;
+    font-weight: bolder;
+    /* font-family: 'billabong';  */
+}
