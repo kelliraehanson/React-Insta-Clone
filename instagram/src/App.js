@@ -5,12 +5,13 @@ import './App.css';
 // import PostContainer from './components/PostContainer/PostContainer';
 import SearchBar from './components/SearchBar/SearchBar';
 import PostContainer from './components/PostContainer/PostContainer';
-// import dummyData from './dummy-data';
+import dummyData from './components/dummy-data';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      dummyData: dummyData,
       
     };
 
