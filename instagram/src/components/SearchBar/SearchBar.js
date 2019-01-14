@@ -17,7 +17,8 @@ class SearchBar extends Component {
         <div className="instaSearchbar">Instagram</div>
 
         <input 
-        value="search"
+        // value={<i class="fas fa-search">Search</i>}
+        value="Search"
         type="search"
         placeholder="Search"
 

@@ -55,8 +55,10 @@ input {
     width: 200px;
     height: 35px;
     cursor: pointer;
-    background-color: lightgrey;
+    background-color: gainsboro;
     display: flex;
     align-items: center;
     margin-top: 10px;
+    font-size: 15px;
+    color: grey;
 }
