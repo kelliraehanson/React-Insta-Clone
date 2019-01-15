@@ -1,0 +1,57 @@
+.postsContainer {
+    height: 300px;
+    width: 50%;
+    margin: 5px auto;
+  }
+  .postBorder {
+    border: 1px solid silver;
+    margin-top: 50px;
+  }
+  .postImage {
+    height: 100%;
+    width: 100%;
+    padding-bottom: 5px;
+  }
+  
+  .postImage {
+    width: 100%;
+  }
+  
+  .postHeader {
+    display: flex;
+    height: 50px;
+  }
+  
+  .postThumb {
+    height: 40px;
+    width: 40px;
+    margin: 5px;
+  }
+
+  .postThumbImage {
+    height: 100%;
+    border-radius: 50%;
+  }
+
+  .postUsername {
+      font-size: 20px;
+      margin-top: 12px;
+      margin-left: 5px;
+      font-weight: bold;
+  }
+
+  .likes {
+      font-size: 25px;
+      color: black;
+      display: flex;
+      padding-bottom: 10px;
+
+  }
+
+  .numberLikes {
+      color: black;
+      font-size: 15px;
+      padding-top: 5px;
+      
+  }
+

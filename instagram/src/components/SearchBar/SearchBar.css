@@ -1,36 +1,28 @@
 .SearchBar {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 10px;
+    border-bottom: 1px solid silver;
 }
+
 
 .logoImage {
     color: black;
-    font-size: 35px;
+    font-size: 30px;
     display: flex;
     align-items: center;
     cursor: pointer;
     
 }
 
-.line {
-    color: black;
-    font-size: 34px;
-    display: flex;
-    align-items: center;
-    margin-left: -380px;
-
-}
-
 .instaSearchbar {
     color: black;
     font-size: 34px;
-    font-family: cursive;
     font-weight: bolder;
     cursor: pointer;
     margin-left: -380px;
-
-    /* font-family: 'billabong';  */
+    font-family: 'billabong', cursive; 
+    /* text-decoration: none; */
 }
 
 i {
@@ -41,7 +33,7 @@ i {
 }
 
 .icons {
-    font-size: 25px;
+    font-size: 20px;
     color: grey;
     display: flex;
     align-items: center;
@@ -50,12 +42,12 @@ i {
 }
 
 input {
-    border: 1px solid grey;
+    border: 1px solid rgb(248, 244, 244);
     border-radius: 5px;
-    width: 200px;
-    height: 35px;
+    width: 250px;
+    height: 25px;
     cursor: pointer;
-    background-color: gainsboro;
+    background-color: rgb(221, 219, 219);
     display: flex;
     align-items: center;
     margin-top: 10px;

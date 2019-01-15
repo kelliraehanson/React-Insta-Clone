@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.css';
-// import CommentSection from './components/CommentSection/CommentSection';
-// import PostContainer from './components/PostContainer/PostContainer';
 import SearchBar from './components/SearchBar/SearchBar';
-import PostContainer from './components/PostContainer/PostContainer';
+import PostContainer from './components/PostContainer/PostsContainer';
 import dummyData from './components/dummy-data';
 
 class App extends Component {
@@ -12,20 +9,18 @@ class App extends Component {
     super();
     this.state = {
       dummyData: dummyData,
-      
     };
-
   }
-
 
   render() {
 
-    
     return (
+
       <div className="App">
         <SearchBar />
-        <PostContainer />
+        <PostContainer dummyData={this.state.dummyData} />
       </div>
+
     );
   }
 }

@@ -1,30 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './SearchBar.css';
 
 
-class SearchBar extends Component {
-
-    render() {
+const SearchBar = props => {
 
       return (
 
         <div className="SearchBar">
 
+
         <div className="logoImage"><i class="fab fa-instagram"></i></div>
 
-        <div className="line">|</div>
+        {/* <div className="instaSearchbar"><a href="https://www.instagram.com">Instagram</a></div> */}
 
         <div className="instaSearchbar">Instagram</div>
 
-        <input 
-        // value={<i class="fas fa-search">Search</i>}
-        value="Search"
-        type="search"
-        placeholder="Search"
-
-        />
+        <div className="search"><input type="text" placeholder="Search" /></div>
+       
+    
 
         <div className="icons">
+
         <i class="far fa-compass"></i>
         <i class="far fa-heart"></i>
         <i class="far fa-user"></i></div>
@@ -32,7 +28,7 @@ class SearchBar extends Component {
         </div>
 
       );
-    }
+    
   }
   
   export default SearchBar;
