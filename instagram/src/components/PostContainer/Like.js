@@ -4,7 +4,9 @@ import './Posts.css';
 const Like = props => {
     return (
         <div className="likes">
-        <i class="far fa-heart"></i>
+
+        <i onClick={props.likePost} class="far fa-heart"></i>
+
         <i className="far fa-comment"></i>
         <div className="numberLikes">{props.likes}  likes</div>
 
