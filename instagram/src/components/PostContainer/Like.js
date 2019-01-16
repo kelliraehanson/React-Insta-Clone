@@ -16,5 +16,7 @@ const Like = props => {
 
 export default Like;
 
+// {/* This is assigning the likes to go up in number when the user clicks on the heart icon */}
+
 
 

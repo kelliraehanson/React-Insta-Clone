@@ -11,10 +11,13 @@ class App extends Component {
       dummyData: dummyData,
     };
   }
+  // {/* ^ getting data stored in state */}
 
   render() {
 
-    return (
+  // {/* this is what is visible on the app */}
+
+  return ( 
 
       <div className="App">
         <SearchBar />

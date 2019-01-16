@@ -8,8 +8,8 @@ const PostsContainer = props => {
 
     <div className="postsContainer">
 
-      {props.dummyData.map (k=> 
-      <Post key={k.imageUrl} post={k} />)}
+      {props.dummyData.map (kelli=> 
+      <Post key={kelli.imageUrl} post={kelli} />)}
 
     </div>
 

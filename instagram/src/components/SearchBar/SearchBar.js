@@ -32,4 +32,6 @@ const SearchBar = props => {
   }
   
   export default SearchBar;
+
+//   {/* Search bar with icons and input type */}
   
