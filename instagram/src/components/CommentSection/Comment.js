@@ -5,8 +5,10 @@ import './CommentSection.css';
 const Comment = props => {
   return (
     <div className="commentText">
-      <span className="comment">{props.comment.text}</span>{' '}
-      <span className="user">-{props.comment.username}</span>
+        <span className="user">{props.comment.username}</span>{''}
+
+        <span className="comment">{props.comment.text}</span>
+      
     </div>
   );
 };
@@ -14,7 +16,7 @@ const Comment = props => {
 Comment.propTypes = {
   comment: PropTypes.shape({
     text: PropTypes.string,
-    username: PropTypes.string
+    username: PropTypes.string,
   })
 };
 
