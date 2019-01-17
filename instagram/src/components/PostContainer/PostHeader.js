@@ -1,5 +1,30 @@
 import React from 'react';
 import './Posts.css';
+// import styled, {css} from 'styled-components';
+
+// const PostHeader = styled.div`
+// display: flex'
+// padding: 10px;
+
+// `;
+
+// const PostHeader = props => {
+//   return (
+//     <PostHeaderThing>
+
+//       <PostHeaderThumb>
+//       <img
+//           alt="post header"
+//           className="postThumbImage"
+//           src={props.thumbnailUrl}
+//         />
+//       </PostHeaderThumb>
+      
+//     </PostHeaderThing>
+//   )
+// }
+
+// export default PostHeader;
 
 const PostHeader = props => {
 

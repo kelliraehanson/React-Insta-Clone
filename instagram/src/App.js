@@ -3,6 +3,28 @@ import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
 import PostContainer from './components/PostContainer/PostsContainer';
 import dummyData from './components/dummy-data';
+// import PostsPage from './components/PostContainer/PostsPage';
+// import LoginPage from './components/Login/Login';
+// import authenticate from './components/Authentication/authenticate';
+
+
+// class App extends Component {
+//   constructor() {
+//     super();
+//     this.state = {};
+//   }
+
+//   render() {
+//     return (
+//       <div className="App">
+//       <PostsPage />
+//       </div>
+//     );
+//   }
+// }
+
+// export default authenticate(App)(LoginPage);
+
 
 class App extends Component {
   constructor() {
@@ -31,7 +53,11 @@ class App extends Component {
   return ( 
 
       <div className="App">
-        <SearchBar />
+        <SearchBar 
+        searchTerm={this.state.searchTerm}
+        searchPosts={this.searchPostsHandler}
+        />
+
         <PostContainer dummyData={this.state.filteredPosts.length > 0 ?
         this.state.filteredPosts :
         this.state.dummyData

@@ -15,7 +15,7 @@ const SearchBar = props => {
 
         <div className="instaSearchbar">Instagram</div>
 
-        <div className="search"><input type="text" placeholder="Search" /></div>
+        <div className="search"><input type="text" placeholder="Search" onKeyPress={props.searchPosts}/></div>
        
     
 

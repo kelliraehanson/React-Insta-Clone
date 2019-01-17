@@ -35,52 +35,22 @@ class CommentSection extends React.Component {
   };
 
   commentsHandler = e => {
-      this.setState({ comment: e.target.value });
+      console.log("Working!")
+      this.setState({ comment: e.target.value }, () => console.log(this.state.comment));
   };
 
   handleCommentSubmit = e => {
       e.preventDefault();
+      console.log(this.state.comment)
       const newComment = { text: this.state.comment, username: 'kelliraehanson'};
       const comments = this.state.comments.slice();
       comments.push(newComment);
+      console.log(newComment)
       this.setState({ comments, comment: '' });
       setTimeout(() => {
           this.setComments();
       }, 500);
   };
-
-//   commentInput = event => {
-//       this.setState({ comment: event.target.value })
-//   }
-
-//   addNewComment = event =>
-//   event.preventDefault();
-//   const newComment = { text: this.state.comment, username:
-//     'kelliraehanson' };
-//     const comments = [...this.state.comments];
-//     comments.push(newComment);
-//     this.setState({ comments, comment: ''});
-// }
-
-// componentDidMount() {
-//     const id = this.props.postId;
-//     if (localStorage.getItem(id)) {
-//         this.setState({
-//             comments: JSON.parse(localStorage.getItem
-//                 (this.props.postId))
-//         });
-//     }
-//     else {
-//         this.addComments();
-//     }
-
-// }
-
-// componentWillUnmount() {
-//     this.addComments();
-
-// }
-
 
 
   render() {
