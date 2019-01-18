@@ -56,13 +56,6 @@ class Post extends Component {
     )};
 };
 
-Post.propTypes = {
-    post: PropTypes.shape({
-        username: PropTypes.string,
-        thumbnailUrl: PropTypes.string,
-        imageUrl: PropTypes.string
-    })
-}
 
 export default Post;
 
