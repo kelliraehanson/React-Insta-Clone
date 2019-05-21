@@ -56,6 +56,7 @@
 
 import React from 'react'
 import './Login.css'
+import logo from "./insta.png";
 
 class Login extends React.Component {
     constructor(props) {
@@ -81,7 +82,11 @@ class Login extends React.Component {
         return (
             <div className="login-form">
                 <form className="login-form-main">
-                    <h1>Welcome to React&middot;Instagram!</h1>
+                    <h1>Welcome to Insta-Clone!</h1>
+                    <div className="logoTitle">
+                        <img src={logo} className="logo" alt="insta" />
+                    </div>
+                    <h4>(Instagram built with React)</h4>
                     <input 
                         className="login-form-username"
                         type="text"

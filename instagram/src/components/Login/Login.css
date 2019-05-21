@@ -11,3 +11,17 @@
     width: 30%;
     margin: 5px auto;
 } 
+
+.logoTitle {
+    display: flex;
+    justify-content: center;
+}
+
+.login-form img {
+    width: auto;
+    height: 200px;
+}
+
+h4 {
+    font-style: italic;
+}
