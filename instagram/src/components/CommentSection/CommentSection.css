@@ -1,4 +1,38 @@
+.comment {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.comment-username {
+  font-weight: bold;
+  margin-right: 7px;
+}
+
+.comment-input {
+  height: 50px;
+  border: none;
+  width: 100%;
+}
+
+.comment-input:focus {
+  outline: none;
+}
+
+.timestamp {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 20px;
+}
+
+.delete-comment {
+  font-weight: bold;
+  opacity: 1;
+  margin-left: auto;
+  cursor: pointer;
+  color: red;
+}
+
+
+/* 
 .commentText {
     text-align: left;
     margin-left: 8px;
@@ -19,4 +53,4 @@
   .commentInput {
       width: 400px;
       margin: 10px;
-  }
+  } */

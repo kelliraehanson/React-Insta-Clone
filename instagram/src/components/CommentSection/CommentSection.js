@@ -1,82 +1,210 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import './CommentSection.css';
 import Comment from './Comment';
-import CommentInput from './CommentInput';
+import moment from 'moment';
+import AddComment from '../CommentSection/AddComment';
 
 class CommentSection extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      comments: props.comments,
-      comment: '',
-    };
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            comments: [],
+            newComment: '',
+            isLiked: false,
+            likes: 0
+        }
+    }
 
-  componentDidMount() {
-      const id = this.props.postId;
-      if (localStorage.getItem(id)) {
-          this.setState({
-              commments: JSON.parse(localStorage.getItem(this.props.postId))
-          });
-      } else {
-          this.setComments();
-      }
-  }
+    // if post has comments in local storage, set this.state.comments to those comments.  Otherwise use the comments passed down from the dummyData
+    componentDidMount() {
+        localStorage.getItem(`comments${this.props.id}`) === null ?
+            this.setState({
+                comments: this.props.post.comments,
+                likes: this.props.post.likes
+            }) :
+            this.setState({
+                comments: JSON.parse(localStorage.getItem((`comments${this.props.id}`))),
+                likes: this.props.post.likes
+            })
+    }
 
-  componentWillUnmount() {
-      this.setComments();
-  }
+    // update this.state.newComment to user input
+    handleChange = e => {
+        this.setState({
+            newComment: e.target.value
+        })
+    }
 
-  setComments = () => {
-      localStorage.setItem(
-          this.props.postId,
-          JSON.stringify(this.state.comments)
-      );
-  };
+    // update this.state.comments with user input.  Currently using randomly generated username
+    // ***** TODO: grab username from login session instaed of getRandomUserName() ******
+    addComment = e => {
+        e.preventDefault();
+        const comments = [...this.state.comments];
+        comments.push({
+            username: localStorage.getItem('user'),
+            text: this.state.newComment
+        })
+        this.setState({
+            comments: comments,
+            newComment: ''
+        }, () => localStorage.setItem(`comments${this.props.id}`, JSON.stringify(this.state.comments)))
+    }
 
-  commentsHandler = e => {
-      console.log("Working!")
-      this.setState({ comment: e.target.value }, () => console.log(this.state.comment));
-  };
+    // delete comment from post
+    deleteComment = id => {
+        const comments = [...this.state.comments];
+        // return new copy of array with the index of the clicked comment removed
+        const newComments = comments.slice(0,id).concat(comments.slice(id+1));
+        this.setState({
+            comments: newComments
+        }, () => localStorage.setItem(`comments${this.props.id}`, JSON.stringify(this.state.comments)))
+    }
 
-  handleCommentSubmit = e => {
-      e.preventDefault();
-      console.log(this.state.comment)
-      const newComment = { text: this.state.comment, username: 'kelliraehanson'};
-      const comments = this.state.comments.slice();
-      comments.push(newComment);
-      console.log(newComment)
-      this.setState({ comments, comment: '' });
-      setTimeout(() => {
-          this.setComments();
-      }, 500);
-  };
+    // show the delete option for a comment if user hovers over the comment
+    showDelete = e => { 
+        if (e.target.classList.value !== 'comment') {
+            e.target.parentElement.children[2].classList.remove('hide');
+        } else {
+            e.target.children[2].classList.remove('hide');
+        }   
+    }
 
+    removeDelete = e => {
+        if (e.target.classList.value !== 'comment') {
+            e.target.parentElement.children[2].classList.add('hide')
+        } else {
+            e.target.children[2].classList.add('hide');
+        }
+    }
 
-  render() {
+    // helper function to generate a random username
+    getRandomUserName = () => {
+        const user = [];
+        const symbols = 'abcdefghijklmnopqrstuvwxyz1234567890.!?';
+        for (let i = 0; i < 10; i++) {
+            user.push(symbols[Math.floor(Math.random()*symbols.length)])
+        }
+        return user.join('');
+    }
 
-    return (
-
-      <div>
-        {this.state.comments.map((hi, yes) => 
-        <Comment key={yes} comment={hi} />)}
-
-        <CommentInput 
-        comment={this.state.comment}
-        submitComment={this.handleCommentSubmit}
-        changeComment={this.commentHandler}
-        />
-      </div>
-
-    );
-  }
+    render() {
+        return(
+            <div className="bottom-section">
+                <div className="icons">
+                    <i 
+                        className="far fa-heart fa-2x"
+                        onClick={() => {
+                            if (!this.state.isLiked) {this.props.addLike(this.props.id)}
+                        }}    
+                    ></i>
+                    <i className="far fa-comment fa-2x"></i>
+                </div>
+                <h3 className="number-likes">{this.props.post.likes} likes</h3>
+                {this.state.comments.map((comment, index) => {
+                    return <Comment 
+                        key={index}
+                        id={index}
+                        comment={comment.text}
+                        username={comment.username}
+                        deleteComment={this.deleteComment}
+                        showDelete={this.showDelete}
+                        removeDelete={this.removeDelete}
+                    />
+                })}
+                <h3 className='timestamp'>{moment(this.props.post.timestamp, 'MMMM Do YYYY, h:mm:ss a').fromNow().toUpperCase()}</h3>
+                <AddComment 
+                    newComment={this.state.newComment}
+                    addComment={this.addComment}
+                    handleChange={this.handleChange} 
+                    getRandomUserName={this.getRandomUserName}   
+                />
+            </div>
+        )
+    }
 }
 
-CommentSection.propTypes = {
-  comments: PropTypes.arrayOf(PropTypes.shape({ text: PropTypes.string, username: PropTypes.string, 
-        
-    })
-  )
-};
+export default CommentSection; 
 
-export default CommentSection;
+
+// import React from 'react';
+// import PropTypes from 'prop-types';
+// import Comment from './Comment';
+// import CommentInput from './CommentInput';
+
+// class CommentSection extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       comments: props.comments,
+//       comment: '',
+//     };
+//   }
+
+//   componentDidMount() {
+//       const id = this.props.postId;
+//       if (localStorage.getItem(id)) {
+//           this.setState({
+//               commments: JSON.parse(localStorage.getItem(this.props.postId))
+//           });
+//       } else {
+//           this.setComments();
+//       }
+//   }
+
+//   componentWillUnmount() {
+//       this.setComments();
+//   }
+
+//   setComments = () => {
+//       localStorage.setItem(
+//           this.props.postId,
+//           JSON.stringify(this.state.comments)
+//       );
+//   };
+
+//   commentsHandler = e => {
+//       console.log("Working!")
+//       this.setState({ comment: e.target.value }, () => console.log(this.state.comment));
+//   };
+
+//   handleCommentSubmit = e => {
+//       e.preventDefault();
+//       console.log(this.state.comment)
+//       const newComment = { text: this.state.comment, username: 'kelliraehanson'};
+//       const comments = this.state.comments.slice();
+//       comments.push(newComment);
+//       console.log(newComment)
+//       this.setState({ comments, comment: '' });
+//       setTimeout(() => {
+//           this.setComments();
+//       }, 500);
+//   };
+
+
+//   render() {
+
+//     return (
+
+//       <div>
+//         {this.state.comments.map((hi, yes) => 
+//         <Comment key={yes} comment={hi} />)}
+
+//         <CommentInput 
+//         comment={this.state.comment}
+//         submitComment={this.handleCommentSubmit}
+//         changeComment={this.commentHandler}
+//         />
+//       </div>
+
+//     );
+//   }
+// }
+
+// CommentSection.propTypes = {
+//   comments: PropTypes.arrayOf(PropTypes.shape({ text: PropTypes.string, username: PropTypes.string, 
+        
+//     })
+//   )
+// };
+
+// export default CommentSection;

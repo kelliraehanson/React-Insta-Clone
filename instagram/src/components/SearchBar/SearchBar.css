@@ -22,7 +22,7 @@
     cursor: pointer;
     margin-left: -380px;
     font-family: 'billabong', cursive; 
-    /* text-decoration: none; */
+    text-decoration: none;  
 }
 
 i {
@@ -53,4 +53,4 @@ input {
     margin-top: 10px;
     font-size: 15px;
     color: grey;
-}
+} 

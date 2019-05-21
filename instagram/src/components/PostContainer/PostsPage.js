@@ -1,53 +1,145 @@
 import React, { Component } from 'react';
-import dummyData from './components/dummy-data';
-import SearchBar from './components/SearchBar/SearchBar';
-import PostContainer from './components/PostContainer/PostsContainer';
+import './Posts.css'
+import '../../App.css';
+import dummyData from '../dummy-data'
+import SearchBar from '../../components/SearchBar/SearchBar'
+import PostsContainer from './PostsContainer'
 
 class PostsPage extends Component {
     constructor() {
         super();
-        this.state= {
-            posts: [],
-            filteredPosts: [],
-        };
+        this.state = {
+            data: [],
+            searchText: '',
+        }
     }
 
     componentDidMount() {
-        this.setState({ dummyData: dummyData });
-      }
-    
-      searchPostsHandler = e => {
-        const posts = this.state.posts.filter(p => {
-          if (p.username.includes(e.target.value)) {
-            return p;
-          }
-        });
-        this.setState({ filteredPosts: dummyData });
-      }
-    
-      render() {
-    
-      return ( 
-    
-          <div className="App">
+        // if nothing in local storage, hydrate this.state.data with dummyData
+        localStorage.getItem('data') === null ?
+            this.setState({
+            data: dummyData,
+            }) :
+            // if 'data' exists in local storage, hydrate this.state.data with that data
+            this.setState({
+            data: JSON.parse(localStorage.getItem('data'))
+            });
+        }
+
+    // method for searching posts based on user input, callback runs filterSearch method
+    handleSearch = e => {
+        this.setState({
+        searchText: e.target.value
+        }, () => this.filterSearch())
+    }
+
+    // hide all posts in which the user input search doesn't exist within the usernames of the posts
+    filterSearch = () => {
+        // grab all posts
+        const posts = (document.querySelectorAll('.post'));
+        // compare user input to username of post, set display to none if no match
+        posts.forEach(post => {
+        if (post.children[0].textContent.indexOf(this.state.searchText) === -1) {
+            post.classList.add('hide');
+        } else {
+            post.classList.remove('hide');
+        }
+        })
+    }
+
+    // if user hasn't liked a photo, clicking the heart will add 1 to number of likes onClick.  If they have clicked, subtract 1 from likes onClick.
+    addLike = id => {
+        const data = [...this.state.data];
+        // if user hasn't liked (initial state)
+        data[id].likes++;
+        this.setState({
+            data: data,
+        }, () => localStorage.setItem('data', JSON.stringify(this.state.data)));
+        // if user has already liked
+    }
+
+    logout = () => {
+        localStorage.removeItem('user');
+        window.location.reload();
+    }
+
+    render() {
+        return (
+            <div className="PostsPage">
             <SearchBar 
-            searchTerm={this.state.searchTerm}
-            searchPosts={this.searchPostsHandler}
+                searchText={this.state.searchText}
+                handleSearch={this.handleSearch}  
+                logout={this.logout}
             />
-    
-            <PostContainer dummyData={this.state.filteredPosts.length > 0 ?
-            this.state.filteredPosts :
-            this.state.dummyData
-            
-          }
-          />
-            
-    
-          </div>
-    
+
+            {this.state.data.map((post, index) => {
+                return <PostsContainer 
+                post={post}
+                key={index}
+                id={index}
+                addLike={this.addLike}
+                />
+            })}
+
+            </div>
         );
-      }
-    
+        }
 }
 
-export default PostsPage;
+
+export default PostsPage 
+
+
+// import React, { Component } from 'react';
+// import dummyData from './components/dummy-data';
+// import SearchBar from './components/SearchBar/SearchBar';
+// import PostContainer from './components/PostContainer/PostsContainer';
+
+// class PostsPage extends Component {
+//     constructor() {
+//         super();
+//         this.state= {
+//             posts: [],
+//             filteredPosts: [],
+//         };
+//     }
+
+//     componentDidMount() {
+//         this.setState({ dummyData: dummyData });
+//       }
+    
+//       searchPostsHandler = e => {
+//         const posts = this.state.posts.filter(p => {
+//           if (p.username.includes(e.target.value)) {
+//             return p;
+//           }
+//         });
+//         this.setState({ filteredPosts: dummyData });
+//       }
+    
+//       render() {
+    
+//       return ( 
+    
+//           <div className="App">
+//             <SearchBar 
+//             searchTerm={this.state.searchTerm}
+//             searchPosts={this.searchPostsHandler}
+//             />
+    
+//             <PostContainer dummyData={this.state.filteredPosts.length > 0 ?
+//             this.state.filteredPosts :
+//             this.state.dummyData
+            
+//           }
+//           />
+            
+    
+//           </div>
+    
+//         );
+//       }
+    
+// }
+
+// export default PostsPage;
