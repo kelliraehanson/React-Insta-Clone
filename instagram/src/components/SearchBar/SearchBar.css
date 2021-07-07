@@ -1,0 +1,56 @@
+.SearchBar {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-bottom: 1px solid silver;
+}
+
+
+.logoImage {
+    color: black;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    
+}
+
+.instaSearchbar {
+    color: black;
+    font-size: 34px;
+    font-weight: bolder;
+    cursor: pointer;
+    margin-left: -380px;
+    font-family: 'billabong', cursive; 
+    text-decoration: none;  
+}
+
+i {
+    width: 55px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.icons {
+    font-size: 20px;
+    color: grey;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+input {
+    border: 1px solid rgb(248, 244, 244);
+    border-radius: 5px;
+    width: 250px;
+    height: 25px;
+    cursor: pointer;
+    background-color: rgb(221, 219, 219);
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 15px;
+    color: grey;
+} 
